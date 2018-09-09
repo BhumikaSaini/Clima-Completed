@@ -14,33 +14,33 @@ public class WeatherDataModel {
 
     // Create a WeatherDataModel from a JSON.
     // We will call this instead of the standard constructor.
-    /*public static WeatherDataModel fromJson(JSONObject jsonObject) {
+    public static WeatherDataModel fromJson(JSONObject jsonObject) {
 
         // JSON parsing is risky business. Need to surround the parsing code with a try-catch block.
-       try {
+        try {
             // instantiate an object
-
+            WeatherDataModel weatherDataModel = new WeatherDataModel();
             // set weatherData.mCity from JSON
-
+            weatherDataModel.mCity = jsonObject.get("name").toString();
             // set weatherData.mCondition from JSON
-
+            weatherDataModel.mCondition = jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");
             // set mIconName using updateWeatherIcon() & mCondition
-
+            weatherDataModel.mIconName = updateWeatherIcon(weatherDataModel.mCondition);
             // get temp from JSON
-
             // convert to degree celsius and round temp to int
-
             // set mTemperature
+            double temp = jsonObject.getJSONObject("main").getDouble("temp") - 273;
+            weatherDataModel.mTemperature = ""+(int) temp;
 
             // return the object
-
+            return weatherDataModel;
         }
         catch (JSONException e) {
             e.printStackTrace();
             return null;
         }
 
-    }*/
+    }
 
     // Get the weather image name from OpenWeatherMap's condition (marked by a number code)
     private static String updateWeatherIcon(int condition) {

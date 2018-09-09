@@ -1,5 +1,4 @@
 package com.bhumika.tech.myclima;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +23,7 @@ import android.widget.TextView;
         (5) setResult() for the calling activity
  */
 
-public class CitySelectionActivity extends AppCompatActivity {
+public class CitySelectionActivity extends AppCompatActivity implements View.OnClickListener, TextView.OnEditorActionListener {
 
     EditText queryEditText;
     ImageButton backImageButton;
@@ -37,9 +36,10 @@ public class CitySelectionActivity extends AppCompatActivity {
 
         initLayout();
         // backImageButton listener here
-
+        backImageButton.setOnClickListener(this);
         // Buttons can have a listener for clicks.
         // EditTexts can have listeners for keyboard presses like hitting the enter key.
+        queryEditText.setOnEditorActionListener(this);
 
     }
 
@@ -49,10 +49,22 @@ public class CitySelectionActivity extends AppCompatActivity {
         promptTextView = findViewById(R.id.promptTextView);
     }
 
-    // onClick()
+    @Override
+    public void onClick(View view) {
+        finish();
+    }
 
-    // onEditorAction()
-    //      put city name as intent extra
-    //      send back the result to calling activity
+    @Override
+    public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+        // put city name as intent extra
+        // send back the result to calling activity
+        String city = queryEditText.getText().toString();
+        Intent intent = new Intent(CitySelectionActivity.this, MainActivity.class);
+        intent.putExtra("City Name", city);
+        setResult(Activity.RESULT_OK, intent);
+        finish();
+
+        return true;
+    }
 
 }
