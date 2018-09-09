@@ -29,11 +29,13 @@ import org.json.JSONObject;
  */
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    // declaration of references
     TextView cityTextView, temperatureTextView;
     ImageButton changeCityButton;
     ImageView weatherImageView;
+
     private int NEW_CITY_CODE = 123;
     private String LOGCAT_TAG = "MainActivity --> ";
     // Base URL for the OpenWeatherMap API. More secure https is a premium feature =(
@@ -47,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initLayout();
+
+        changeCityButton.setOnClickListener(this);
     }
 
     protected void initLayout() {
@@ -54,6 +58,12 @@ public class MainActivity extends AppCompatActivity {
         temperatureTextView = findViewById(R.id.temperatureTextView);
         changeCityButton = findViewById(R.id.changeCityButton);
         weatherImageView = findViewById(R.id.weatherImageView);
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(MainActivity.this, CitySelectionActivity.class);
+        startActivityForResult(intent, NEW_CITY_CODE);
     }
 
     // Callback received when a new city name is entered on the second screen.

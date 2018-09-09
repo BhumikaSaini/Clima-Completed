@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">MyClima</string>
+
     <string name="default_temperature">NA</string>
     <string name="default_city">Select City</string>
+
 </resources>

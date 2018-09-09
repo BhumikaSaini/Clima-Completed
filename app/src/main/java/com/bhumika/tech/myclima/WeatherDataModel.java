@@ -14,10 +14,10 @@ public class WeatherDataModel {
 
     // Create a WeatherDataModel from a JSON.
     // We will call this instead of the standard constructor.
-    public static WeatherDataModel fromJson(JSONObject jsonObject) {
+    /*public static WeatherDataModel fromJson(JSONObject jsonObject) {
 
         // JSON parsing is risky business. Need to surround the parsing code with a try-catch block.
-        try {
+       try {
             // instantiate an object
 
             // set weatherData.mCity from JSON
@@ -39,7 +39,8 @@ public class WeatherDataModel {
             e.printStackTrace();
             return null;
         }
-    }
+
+    }*/
 
     // Get the weather image name from OpenWeatherMap's condition (marked by a number code)
     private static String updateWeatherIcon(int condition) {
